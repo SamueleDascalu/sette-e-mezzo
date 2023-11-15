@@ -1,5 +1,6 @@
 package org.generation.italy;
 
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,10 +18,12 @@ public class Main {
         
         float valoreCorrente=0;
         
-        // creo il mazzo
-        int n = segni.length * valoriStringa.length;
+        HashSet<Integer> carteEstratte = new HashSet<Integer>();
         
-        String[] mazzo = new String[n];
+        // creo il mazzo
+        int lunghezzaTotaleMazzo = segni.length * valoriStringa.length; //lunghezza di segni * lunghezza di valoriStringa
+        
+        String[] mazzo = new String[lunghezzaTotaleMazzo];
         
         for (int i = 0; i < valoriStringa.length; i++) {
             for (int j = 0; j < segni.length; j++) {
@@ -31,9 +34,23 @@ public class Main {
         System.out.print("E' iniziato il gioco ");
         
         do {
-        	System.out.println("la tua carta é: ");
+        	//genero un numero random
+        	numeroGenerato = random.nextInt(40);
         	
-        	numeroGenerato = random.nextInt(40)+1;
+        	//finche il numeroGenerato si trova nel set carteEstratte continua a generare un random
+        	while(carteEstratte.contains(numeroGenerato)) {
+        		//ho rimosso il +1 dato che random parte da 0 esattamente come l'array
+        		numeroGenerato = random.nextInt(40);
+        	}
+        	
+        	/*
+        	 * se il numeroGenerato non e presente all'interno del set carteEstratte lo aggiungo in modo da
+        	 * escludere la carta nell'iterazione successiva
+        	 * */
+    		carteEstratte.add(numeroGenerato);
+    		
+    		System.out.println("la tua carta é: ");
+        	
         	System.out.println();
         	System.out.println(mazzo[numeroGenerato]);
         	
@@ -42,10 +59,9 @@ public class Main {
         	System.out.println();
         	System.out.println();
         	
-        	if(valoreCorrente<=7.5) {
-        		System.out.println("Il valore raggiunto é: "+valoreCorrente);
-        	} else {
-        		System.out.println("Il valore raggiunto é: "+valoreCorrente);
+        	System.out.println("Il valore raggiunto é: "+valoreCorrente);
+        	
+        	if(valoreCorrente>7.5) {
         		System.out.println("Hai sballato!");
         		break;
         	}
