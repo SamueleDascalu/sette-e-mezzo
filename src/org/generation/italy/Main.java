@@ -27,10 +27,6 @@ public class Main {
                 mazzo[segni.length*i + j] = valoriStringa[i] + " di " + segni[j];
             }
         }
-
-//        for(int i=0; i<mazzo.length; i++) {
-//        	System.out.println(mazzo[i]);
-//        }
         
         System.out.print("E' iniziato il gioco ");
         
