@@ -9,12 +9,13 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Random random = new Random();
+		
 		int numeroGenerato;
 		String risposta;
 		
 		String[] segni = {"Denari", "Bastoni", "Coppe", "Spade"};
         String[] valoriStringa = {"1", "2", "3", "4", "5", "6", "7", "cavallo", "donna", "re"};
-        float[] valoriNumerici = {1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f,0.5f};
+        float[] valoriNumerici = new float[40];
         
         float valoreCorrente=0;
         
@@ -28,6 +29,21 @@ public class Main {
         for (int i = 0; i < valoriStringa.length; i++) {
             for (int j = 0; j < segni.length; j++) {
                 mazzo[segni.length*i + j] = valoriStringa[i] + " di " + segni[j];
+            }
+        }
+        
+        for(int i=0; i<mazzo.length; i++) {
+        	System.out.println(mazzo[i]);
+        }
+        
+        //inserisco i valori in valoriNumerici
+        for (int i = 0; i < valoriStringa.length; i++) {
+            for (int j = 0; j < segni.length; j++) {
+            	if(i<7) {
+            		valoriNumerici[segni.length*i + j] = i+1;
+            	} else {
+            		valoriNumerici[segni.length*i + j] = 0.5f;
+            	}
             }
         }
         
