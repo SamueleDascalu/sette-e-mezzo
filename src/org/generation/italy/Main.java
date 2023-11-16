@@ -32,10 +32,6 @@ public class Main {
             }
         }
         
-        for(int i=0; i<mazzo.length; i++) {
-        	System.out.println(mazzo[i]);
-        }
-        
         //inserisco i valori in valoriNumerici
         for (int i = 0; i < valoriStringa.length; i++) {
             for (int j = 0; j < segni.length; j++) {
@@ -86,7 +82,7 @@ public class Main {
         	risposta = scanner.nextLine();
         }while(risposta.equals("si"));
         
-		scanner.close(); 
+		scanner.close();
 	}
 
 }
