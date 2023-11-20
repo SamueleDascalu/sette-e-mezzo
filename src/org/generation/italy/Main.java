@@ -10,7 +10,7 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		Random random = new Random();
 		
-		int numeroGenerato;
+		int numeroGenerato, contatore=0, banco=0;
 		String risposta;
 		
 		String[] segni = {"Denari", "Bastoni", "Coppe", "Spade"};
@@ -66,21 +66,50 @@ public class Main {
         	System.out.println();
         	System.out.println(mazzo[numeroGenerato]);
         	
-        	System.out.print("Il suo valore é: "+valoriNumerici[numeroGenerato]);
         	valoreCorrente+=valoriNumerici[numeroGenerato];
         	System.out.println();
-        	System.out.println();
         	
-        	System.out.println("Il valore raggiunto é: "+valoreCorrente);
+        	if(contatore>0) {
+        		System.out.println("Il valore raggiunto é: "+valoreCorrente);
+        	}
         	
         	if(valoreCorrente>7.5) {
         		System.out.println("Hai sballato!");
         		break;
         	}
         	
+        	contatore++;
+        	
         	System.out.print("Vuoi un'altra carta? (si/no) ");
-        	risposta = scanner.nextLine();
+        	risposta = scanner.nextLine();;
+        	
         }while(risposta.equals("si"));
+        
+        while(banco<=valoreCorrente && banco<=7.5) {
+        	numeroGenerato = random.nextInt(40);
+        	
+        	while(carteEstratte.contains(numeroGenerato)) {
+        		numeroGenerato = random.nextInt(40);
+        	}
+        	
+        	carteEstratte.add(numeroGenerato);
+        	
+        	banco+=valoriNumerici[numeroGenerato];
+        	
+        	if(banco>=valoreCorrente && banco<=7.5) {
+        		break;
+        	}
+        }
+        
+        if(banco<=7.5&&banco>=valoreCorrente) {
+        	System.out.println("Il banco ha fatto "+banco);
+        	System.out.println("Ha vinto il banco");
+        }
+        
+        if(banco>7.5) {
+        	System.out.println("Il banco ha fatto "+banco);
+        	System.out.println("Il banco ha sballato.");
+        }
         
 		scanner.close();
 	}
